@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница</title>
-    <link rel="stylesheet" href="../static/home.css" th:href="@{/home.css}" /> </head>
+    <link rel="stylesheet" href="../static/home.css" th:href="@{/home.css}" />
+</head>
 <body>
 <header>
     <div class="logo">Система регистрации обращений</div>
@@ -12,9 +13,12 @@
 </header>
 
 <main>
-    <h1>Добро пожаловать на главную страницу!<h1>
+    <h1>Добро пожаловать на главную страницу!</h1>
     <h1>Вы успешно выполнили вход в систему</h1>
     <p>Здесь будет основное содержимое страницы.</p>
+
+    <a th:href="@{/create-task}" class="create-task-button">Создать обращение</a>
+
 </main>
 
 <footer>
@@ -22,4 +26,5 @@
 </footer>
 </body>
 </html>
+
 

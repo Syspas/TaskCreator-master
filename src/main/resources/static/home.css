@@ -60,3 +60,21 @@ footer {
     width: 100%;
 }
 
+
+/* В файле home.css */
+
+.create-task-button {
+    /* Здесь добавьте стили для кнопки */
+    background-color: #007bff; /* Синий цвет */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.create-task-button:hover {
+    background-color: #0056b3; /* Темнее синий */
+}
+
