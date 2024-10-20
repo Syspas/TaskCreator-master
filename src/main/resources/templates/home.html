@@ -1,54 +1,25 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .container {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            width: 350px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff; /* Цвет фона */
-            color: #fff; /* Цвет текста */
-            text-decoration: none; /* Убираем подчеркивание */
-            border-radius: 5px; /* Закругленные углы */
-        }
-
-        a:hover {
-            background-color: #0056b3; /* Цвет фона при наведении */
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="../static/home.css" th:href="@{/home.css}" /> </head>
 <body>
-<div class="container">
-    <h2>Добро пожаловать на главную страницу!</h2>
-    <a href="/logout-success">Выйти</a>
-</div>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <a th:href="@{/logout-success}" class="logout-button">Выйти</a>
+</header>
+
+<main>
+    <h1>Добро пожаловать на главную страницу!<h1>
+    <h1>Вы успешно выполнили вход в систему</h1>
+    <p>Здесь будет основное содержимое страницы.</p>
+</main>
+
+<footer>
+    <p>&copy; 2024 ООО Имя компания</p>
+</footer>
 </body>
 </html>
 

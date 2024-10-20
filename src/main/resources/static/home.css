@@ -1,0 +1,62 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #007bff; /* Цвет фона хедера */
+    color: #fff; /* Цвет текста хедера */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px; /* Размер логотипа */
+    font-weight: bold; /* Жирный шрифт для логотипа */
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #e74c3c; /* Изменен цвет на красный */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+    display: flex; /*  Добавляем flexbox для main */
+    justify-content: center; /* Выравниваем по центру по горизонтали */
+    flex-direction: column; /*  Устанавливаем вертикальное направление */
+    align-items: center; /*  Выравниваем по центру по вертикали */
+    min-height: calc(100vh - 70px); /* Устанавливаем минимальную высоту main */
+    background-color: #fff; /*  Добавляем белый фон */
+    border-radius: 10px; /*  Добавляем закругленные углы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /*  Добавляем тень */
+    padding: 30px; /*  Добавляем отступы */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333; /* Цвет фона футера */
+    color: #fff; /* Цвет текста футера */
+    text-align: center;
+    padding: 10px;
+    position: fixed; /* Фиксированное положение внизу */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
