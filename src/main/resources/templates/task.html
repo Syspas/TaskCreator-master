@@ -13,39 +13,42 @@
 </header>
 
 <main>
-    <h2>Информация о задаче</h2>
+    <h1>Информация о задаче</h1>
+
     <div class="task-details">
-        <div class="detail">
-            <label for="task-id">Номер заявки:</label>
-            <span id="task-id" th:text="${task.id}"></span>
-        </div>
-        <div class="detail">
-            <label for="task-title">Название:</label>
-            <span id="task-title" th:text="${task.title}"></span>
-        </div>
-        <div class="detail">
-            <label for="task-description">Описание:</label>
-            <span id="task-description" th:text="${task.description}"></span>
+        <div class="task-card">
+            <div class="detail">
+                <label for="task-id">Номер заявки:</label>
+                <span id="task-id" th:text="${task.id}"></span>
+            </div>
+            <div class="detail">
+                <label for="task-title">Название:</label>
+                <span id="task-title" th:text="${task.title}"></span>
+            </div>
+            <div class="detail">
+                <label for="task-description">Описание:</label>
+                <span id="task-description" th:text="${task.description}"></span>
+            </div>
+            <p style="text-align: center; font-weight: bold; color: green;">
+                Ваша заявка номер <span th:text="${task.id}"></span> успешно зарегистрирована!
+            </p>
         </div>
     </div>
 
-    <h3>Прикрепленные файлы:</h3>
-    <ul class="file-list">
-        <li th:each="fileName : ${task.fileNames}">
-            <a th:href="@{/download/{fileName}(fileName=${fileName})}" th:text="${fileName}"></a>
-        </li>
-    </ul>
-
-    <div class="actions">
-        <a th:href="@{/edit/{taskId}(taskId=${task.id})}" class="edit-button">Редактировать</a>
-        <a th:href="@{/delete/{taskId}(taskId=${task.id})}" class="delete-button">Удалить</a>
+    <h2>Прикрепленные файлы:</h2>
+    <div class="file-list-card">
+        <ul class="file-list">
+            <li th:each="fileName : ${task.fileNames}">
+                <a th:href="@{/download/{fileName}(fileName=${fileName})}" th:text="${fileName}"></a>
+            </li>
+        </ul>
     </div>
 
-    <a th:href="@{/} " class="back-button">Вернуться на главную</a>
+    <a th:href="@{/}" class="back-button">Вернуться на главную</a>
 </main>
 
 <footer>
-    <p>&copy; 2024 ООО Имя компания</p>
+    <p>&copy; 2024 ООО Имя компании</p>
 </footer>
 </body>
 </html>
