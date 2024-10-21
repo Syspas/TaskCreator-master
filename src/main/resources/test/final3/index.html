@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключение внешнего CSS-файла -->
+</head>
+<body>
+<!-- Подключение заголовка -->
+<header th:replace="header.html"></header>
+
+<div class="wrapper">
+    <!-- Боковое меню -->
+    <aside th:replace="sidebar.html"></aside>
+
+    <!-- Основной контент -->
+    <main>
+        <h1>Добро пожаловать!</h1>
+        <p>Вы успешно вошли в систему.</p>
+
+        <h3>Новости и обновления</h3>
+        <div class="info-box">
+            <p><strong>Обновление системы:</strong> Теперь вы можете прикреплять файлы к обращениям. Мы также улучшили интерфейс профиля для удобства работы.</p>
+        </div>
+
+        <h3>Последние обращения</h3>
+        <div class="recent-tasks">
+            <a href="#" class="task-item">
+                <div class="task-title">Обращение 1: Проблема с доступом к учетной записи</div>
+                <div class="task-info status-pending">
+                    <span><div class="status-icon"></div>Дата: 20.10.2024</span>
+                    <span><div class="status-icon"></div>Статус: Ожидает</span>
+                    <span>Исполнитель: Иванов И.И.</span>
+                </div>
+            </a>
+            <a href="#" class="task-item">
+                <div class="task-title">Обращение 2: Ошибка при загрузке файла</div>
+                <div class="task-info status-in-progress">
+                    <span><div class="status-icon"></div>Дата: 17.10.2024</span>
+                    <span><div class="status-icon"></div>Статус: В процессе</span>
+                    <span>Исполнитель: Петров П.П.</span>
+                </div>
+            </a>
+            <a href="#" class="task-item">
+                <div class="task-title">Обращение 3: Пожелание по улучшению интерфейса</div>
+                <div class="task-info status-completed">
+                    <span><div class="status-icon"></div>Дата: 15.10.2024</span>
+                    <span><div class="status-icon"></div>Статус: Завершено</span>
+                    <span>Исполнитель: Сидоров А.А.</span>
+                </div>
+            </a>
+            <a href="#" class="primary-button">Создать новое обращение</a>
+        </div>
+    </main>
+</div>
+
+<!-- Подключение подвала -->
+<footer th:replace="footer.html"></footer>
+</body>
+</html>
