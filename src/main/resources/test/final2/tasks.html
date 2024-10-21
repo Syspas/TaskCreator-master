@@ -253,6 +253,79 @@
         .primary-button:hover {
             background-color: #2f6b31;
         }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc; /* Убираем зеленую рамку, делаем ее серой */
+            border-radius: 5px; /* Закругленные углы */
+            padding: 8px; /* Отступы внутри блока */
+            background-color: #f9f9f9; /* Светлый фон */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
+        }
+
+        #task-number {
+            padding: 10px;
+            width: 300px;
+            border: none; /* Убираем стандартные рамки поля */
+            font-size: 14px;
+            outline: none; /* Убираем синюю рамку при фокусе */
+        }
+
+        #search-task-button {
+            padding: 10px 20px;
+            background-color: #3a8d41;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        #search-task-button:hover {
+            background-color: #2f6b31;
+        }
+
+        .search-box:focus-within {
+            box-shadow: 0 0 5px rgba(58, 141, 65, 0.6); /* Подсвечиваем рамку при фокусе */
+        }
+
+        @media (max-width: 600px) {
+            .search-box {
+                flex-direction: column;
+            }
+
+            #task-number, #search-task-button {
+                width: 100%;
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        #search-task-button {
+            padding: 10px 15px; /* Уменьшаем отступы */
+            background-color: #3a8d41;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+            width: auto; /* Устанавливаем автоматическую ширину */
+        }
+
     </style>
 </head>
 <body>
@@ -279,6 +352,15 @@
 
         <!-- Блок обращений -->
         <h3>Мои обращения</h3>
+
+        <div class="input-container">
+            <label for="task-number">Номер заявки:</label>
+            <div class="search-box">
+                <input type="text" id="task-number" name="task-number" placeholder="Введите номер заявки для ее поиска..." required>
+                <button type="submit" id="search-task-button">Найти</button> <!-- Кнопка поиска -->
+            </div>
+        </div>
+
         <div class="recent-tasks">
             <a href="#" class="task-item">
                 <div class="task-title">Обращение 1: Проблема с доступом к учетной записи</div>
@@ -308,6 +390,7 @@
             <a href="#" class="primary-button">Создать новое обращение</a>
             <!-- Кнопка создания обращения в блоке "Последние обращения" -->
             <a href="#" class="primary-button">Обновить список обращений</a>
+
 
         </div>
     </main>
