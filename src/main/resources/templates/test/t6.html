@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #3a8d41; /* Мягкий зелёный */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .logout-button {
+            background-color: #6c757d; /* Серый цвет */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .logout-button:hover {
+            background-color: #5a6268; /* Более тёмный серый при наведении */
+        }
+
+        .wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Закрепленное боковое меню */
+        #sidebar {
+            background-color: #ddd; /* Вернули прежний цвет */
+            width: 160px; /* Сужаем меню */
+            padding: 20px 10px;
+            position: fixed;
+            top: 80px; /* Начинается чуть ниже хедера */
+            left: 0;
+            height: calc(100vh - 80px); /* Фиксируем по высоте */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            border-right: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        #sidebar h3 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Стили для меню */
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            margin-bottom: 10px; /* Уменьшили расстояние между кнопками */
+        }
+
+        #sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px 15px; /* Уменьшили padding */
+            display: block;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            font-size: 14px; /* Уменьшили шрифт */
+            font-weight: bold;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #ccc;
+            transform: scale(1.05);
+            color: #333;
+        }
+
+        main {
+            flex: 1;
+            margin-left: 180px; /* Учитываем ширину меню */
+            padding: 40px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-height: calc(100vh - 160px); /* Учитываем высоту футера */
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            position: relative;
+            margin-top: auto; /* Поднимает футер выше */
+        }
+
+        footer p {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: left;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #3a8d41;
+            margin-top: 30px;
+            font-size: 20px;
+            text-align: left;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-left: 20px;
+            list-style: disc;
+            color: #555;
+            text-align: left;
+        }
+
+        /* Стили для информационных блоков */
+        .info-box, .recent-tasks {
+            background-color: #e9ecef;
+            border-left: 4px solid #3a8d41;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Стили для блоков */
+        .recent-tasks {
+            border-left: 4px solid #6c757d; /* Немного другой цвет для разнообразия */
+        }
+
+        /* Стили для ссылок на обращения */
+        .recent-tasks a {
+            text-decoration: none;
+            color: #007bff; /* Синий цвет для ссылок */
+            transition: color 0.3s ease;
+        }
+
+        .recent-tasks a:hover {
+            color: #0056b3; /* Более тёмный синий при наведении */
+        }
+
+        /* Кнопки на главной странице */
+        .primary-button {
+            background-color: #3a8d41;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .primary-button:hover {
+            background-color: #2f6b31;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <a href="#" class="logout-button">Выйти</a>
+</header>
+
+<div class="wrapper">
+    <!-- Боковое меню -->
+    <div id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <li><a href="#">Просмотр обращений</a></li>
+            <li><a href="#">Создать обращение</a></li>
+            <li><a href="#">Профиль</a></li>
+            <li><a href="#">Настройки</a></li>
+        </ul>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <h1>Добро пожаловать на главную страницу!</h1>
+        <h2>Вы успешно выполнили вход в систему</h2>
+
+        <p>Здесь вы можете управлять своими обращениями, создавать новые и редактировать профиль. Используйте меню слева для навигации.</p>
+
+        <h3>Последние обращения</h3>
+        <div class="recent-tasks">
+            <ul>
+                <li><a href="#">Обращение 1: Проблема с доступом к учетной записи.</a></li>
+                <li><a href="#">Обращение 2: Ошибка при загрузке данных.</a></li>
+                <li><a href="#">Обращение 3: Пожелание по улучшению интерфейса.</a></li>
+            </ul>
+        </div>
+
+        <h3>Новости и обновления</h3>
+        <div class="info-box">
+            <p><strong>Обновление системы:</strong> Теперь вы можете прикреплять файлы к обращениям. Мы также улучшили интерфейс профиля для удобства работы.</p>
+        </div>
+
+        <a href="#" class="primary-button">Создать новое обращение</a>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>

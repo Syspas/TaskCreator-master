@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Минимальная высота 100% экрана */
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        /* Основная обертка для страницы */
+        .wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Сайдбар */
+        #sidebar {
+            background-color: #f4f4f4;
+            width: 200px;
+            padding: 20px 10px;
+            position: fixed; /* Закрепляем сайдбар */
+            top: 60px; /* Отступ от верха страницы, чтобы не перекрывать хедер */
+            left: 0;
+            height: calc(100vh - 60px); /* Высота сайдбара с учётом высоты хедера */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для сайдбара */
+            border-right: 1px solid #ddd;
+            border-radius: 0 10px 10px 0; /* Закругление углов справа */
+        }
+
+        /* Контент */
+        main {
+            flex: 1;
+            margin-left: 220px; /* Отступ для контента от сайдбара */
+            padding: 40px 20px; /* Более сбалансированные отступы */
+            background-color: #f9f9f9;
+            min-height: calc(100vh - 60px); /* Минимальная высота */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
+        }
+
+        /* Футер */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            margin-top: auto; /* Перемещаем футер вниз */
+        }
+
+        /* Кнопки */
+        .logout-button, .create-task-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Стили для меню */
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        #sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            padding: 12px;
+            display: block;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для ссылок */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Плавные эффекты */
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #4CAF50; /* Цвет фона при наведении */
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo">Система регистрации обращений</div>
+        <a th:href="@{/logout-success}" class="logout-button">Выйти</a>
+    </div>
+</header>
+
+<div class="wrapper">
+    <!-- Боковое меню -->
+    <div id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <li><a th:href="@{/view-tasks}">Просмотр обращений</a></li>
+            <li><a th:href="@{/create-task}">Создать обращение</a></li>
+            <li><a th:href="@{/profile}">Профиль</a></li>
+            <li><a th:href="@{/settings}">Настройки</a></li>
+        </ul>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <h1>Добро пожаловать на главную страницу!</h1>
+        <h2>Вы успешно выполнили вход в систему</h2>
+        <p>Здесь будет основное содержимое страницы.</p>
+
+        <a th:href="@{/create-task}" class="create-task-button">Создать обращение</a>
+    </main>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 ООО Имя компании</p>
+    </div>
+</footer>
+</body>
+</html>

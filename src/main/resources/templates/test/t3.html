@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница</title>
-    <link rel="stylesheet" href="../static/home.css" th:href="@{/home.css}" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
@@ -13,6 +13,16 @@
         <a th:href="@{/logout-success}" class="logout-button">Выйти</a>
     </div>
 </header>
+
+<div id="sidebar">
+    <h3>Меню</h3>
+    <ul>
+        <li><a th:href="@{/view-tasks}">Просмотр обращений</a></li>
+        <li><a th:href="@{/create-task}">Создать обращение</a></li>
+        <li><a th:href="@{/profile}">Профиль</a></li>
+        <li><a th:href="@{/settings}">Настройки</a></li>
+    </ul>
+</div>
 
 <main>
     <div class="container">
@@ -31,6 +41,3 @@
 </footer>
 </body>
 </html>
-
-
-

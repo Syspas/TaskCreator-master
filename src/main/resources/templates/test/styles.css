@@ -8,7 +8,7 @@ body {
     width: 90%; /* Ширина контейнера */
     max-width: 1200px; /* Максимальная ширина для больших экранов */
     margin: 0 auto; /* Центрирование контейнера */
-    padding: 20px; /* Отступы внутренние */
+    padding: 20px; /* Внутренние отступы */
 }
 
 header {
@@ -69,5 +69,43 @@ footer {
     color: #fff; /* Цвет текста в футере */
     text-align: center;
     padding: 10px 0; /* Отступы сверху и снизу */
+}
+
+/* Стили для сайдбара */
+#sidebar {
+    background-color: #f8f9fa; /* Светлый фон сайдбара */
+    float: left;
+    width: 150px;
+    padding: 20px;
+    color: #333; /* Цвет текста */
+}
+
+#sidebar h3 {
+    margin-bottom: 20px;
+    color: #007bff; /* Цвет заголовка меню */
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    margin-bottom: 15px;
+}
+
+#sidebar ul li a {
+    color: #007bff; /* Цвет ссылок */
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+#sidebar ul li a:hover {
+    background-color: #e2e6ea; /* Цвет при наведении */
 }
 
