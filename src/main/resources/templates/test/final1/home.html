@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <div class="header-right">
+        <a href="/logout" class="logout-button">Выйти</a>
+    </div>
+</header>
+
+<div class="wrapper">
+    <!-- Боковое меню -->
+    <div id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <li><a href="/tasks">Просмотр обращений</a></li>
+            <li><a href="/create-task">Создать обращение</a></li>
+            <li><a href="/settings">Настройки</a></li>
+        </ul>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Блок приветствия -->
+        <h1>Добро пожаловать!</h1>
+        <p>Вы успешно вошли в систему.</p>
+
+        <!-- Блок новостей -->
+        <h3>Новости и обновления</h3>
+        <div class="info-box">
+            <p><strong>Обновление системы:</strong> Теперь вы можете прикреплять файлы к обращениям. Мы также улучшили интерфейс профиля для удобства работы.</p>
+        </div>
+
+        <!-- Блок обращений -->
+        <h3>Последние обращения</h3>
+        <div class="recent-tasks">
+            <a href="#" class="task-item">
+                <div class="task-title">Обращение 1: Проблема с доступом к учетной записи</div>
+                <div class="task-info status-pending">
+                    <span><div class="status-icon"></div>Дата: 20.10.2024</span>
+                    <span>Статус: Ожидает</span>
+                    <span>Исполнитель: Иванов И.И.</span>
+                </div>
+            </a>
+            <a href="#" class="task-item">
+                <div class="task-title">Обращение 2: Ошибка при загрузке файла</div>
+                <div class="task-info status-in-progress">
+                    <span><div class="status-icon"></div>Дата: 17.10.2024</span>
+                    <span>Статус: В процессе</span>
+                    <span>Исполнитель: Петров П.П.</span>
+                </div>
+            </a>
+            <a href="#" class="task-item">
+                <div class="task-title">Обращение 3: Пожелание по улучшению интерфейса</div>
+                <div class="task-info status-completed">
+                    <span><div class="status-icon"></div>Дата: 15.10.2024</span>
+                    <span>Статус: Завершено</span>
+                    <span>Исполнитель: Сидоров А.А.</span>
+                </div>
+            </a>
+
+            <!-- Кнопка создания обращения в блоке "Последние обращения" -->
+            <a href="/create-task" class="primary-button">Создать новое обращение</a>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>
