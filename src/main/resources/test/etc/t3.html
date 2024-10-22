@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo">Система регистрации обращений</div>
+        <a th:href="@{/logout-success}" class="logout-button">Выйти</a>
+    </div>
+</header>
+
+<div id="sidebar">
+    <h3>Меню</h3>
+    <ul>
+        <li><a th:href="@{/view-tasks}">Просмотр обращений</a></li>
+        <li><a th:href="@{/create-task}">Создать обращение</a></li>
+        <li><a th:href="@{/profile}">Профиль</a></li>
+        <li><a th:href="@{/settings}">Настройки</a></li>
+    </ul>
+</div>
+
+<main>
+    <div class="container">
+        <h1>Добро пожаловать на главную страницу!</h1>
+        <h2>Вы успешно выполнили вход в систему</h2>
+        <p>Здесь будет основное содержимое страницы.</p>
+
+        <a th:href="@{/create-task}" class="create-task-button">Создать обращение</a>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 ООО Имя компании</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать обращение</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <div class="header-right">
+        <a href="logout-success.html" class="logout-button">Выйти</a>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <li><a href="home.html">Главная</a></li>
+            <li><a href="create_task.html" class="active">Создать обращение</a></li>
+            <li><a href="tasks.html">Просмотр обращений</a></li>
+            <li><a href="settings.html">Настройки</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <h1 class="create-task-title">Создать обращение</h1>
+        <div class="form-container">
+            <form action="/create-task" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="task-title">Название обращения:</label>
+                    <input type="text" id="task-title" name="task-title" placeholder="Введите заголовок проблемы" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Описание обращения:</label>
+                    <textarea id="task-description" name="task-description" placeholder="Опишите проблему" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-files">Прикрепленные файлы:</label>
+                    <input type="file" id="task-files" name="task-files" multiple>
+                </div>
+                <button type="submit">Создать обращение</button>
+            </form>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>

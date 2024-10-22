@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Минимальная высота страницы 100% высоты экрана */
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        #sidebar {
+            background-color: #ddd;
+            float: left; /* Сайдбар слева */
+            width: 150px;
+            padding: 10px;
+        }
+        main {
+            flex: 1; /* Заставляет основной контент растягиваться и занимать всё оставшееся место */
+            display: flex;
+            flex-direction: column;
+            background-color: #eee;
+            padding: 10px;
+        }
+        .content {
+            flex: 1; /* Этот блок растягивается по высоте для заполнения пространства */
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+        .logout-button, .create-task-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo">Система регистрации обращений</div>
+        <a th:href="@{/logout-success}" class="logout-button">Выйти</a>
+    </div>
+</header>
+
+<div id="sidebar">
+    <h3>Меню</h3>
+    <ul>
+        <li><a th:href="@{/view-tasks}">Просмотр обращений</a></li>
+        <li><a th:href="@{/create-task}">Создать обращение</a></li>
+        <li><a th:href="@{/profile}">Профиль</a></li>
+        <li><a th:href="@{/settings}">Настройки</a></li>
+    </ul>
+</div>
+
+<main>
+    <div class="container content">
+        <h1>Добро пожаловать на главную страницу!</h1>
+        <h2>Вы успешно выполнили вход в систему</h2>
+        <p>Здесь будет основное содержимое страницы.</p>
+
+        <a th:href="@{/create-task}" class="create-task-button">Создать обращение</a>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 ООО Имя компании</p>
+    </div>
+</footer>
+</body>
+</html>

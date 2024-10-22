@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блочная верстка в HTML5</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        #header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        #sidebar {
+            background-color: #ddd;
+            float: left; /* Изменено на left */
+            width: 150px;
+            padding: 10px;
+        }
+        #main {
+            background-color: #eee;
+            height: 200px;
+            margin-left: 160px; /* Здесь добавлен отступ для сайдбара */
+            padding: 10px;
+        }
+        #footer {
+            clear: both; /* Обеспечивает, что футер будет под содержимым */
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="header">Шапка сайта</div>
+<div id="sidebar">Сайбар</div>
+<div id="main">Основное содержимое</div>
+<div id="footer">Футер</div>
+</body>
+</html>

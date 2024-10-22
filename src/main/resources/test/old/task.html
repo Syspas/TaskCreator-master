@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о задаче</title>
+    <link rel="stylesheet" href="../static/task.css" th:href="@{/task.css}" />
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <a th:href="@{/logout-success}" class="logout-button">Выйти</a>
+</header>
+
+<main>
+    <h1>Информация о задаче</h1>
+
+    <div class="task-details">
+        <div class="task-card">
+            <div class="detail">
+                <label for="task-id">Номер заявки:</label>
+                <span id="task-id" th:text="${task.id}"></span>
+            </div>
+            <div class="detail">
+                <label for="task-title">Название:</label>
+                <span id="task-title" th:text="${task.title}"></span>
+            </div>
+            <div class="detail">
+                <label for="task-description">Описание:</label>
+                <span id="task-description" th:text="${task.description}"></span>
+            </div>
+            <p style="text-align: center; font-weight: bold; color: green;">
+                Ваша заявка номер <span th:text="${task.id}"></span> успешно зарегистрирована!
+            </p>
+        </div>
+    </div>
+
+    <h2>Прикрепленные файлы:</h2>
+    <div class="file-list-card">
+        <ul class="file-list">
+            <li th:each="fileName : ${task.fileNames}">
+                <a th:href="@{/download/{fileName}(fileName=${fileName})}" th:text="${fileName}"></a>
+            </li>
+        </ul>
+    </div>
+
+    <a th:href="@{/static}" class="back-button">Вернуться на главную</a>
+</main>
+
+<footer>
+    <p>&copy; 2024 ООО Имя компании</p>
+</footer>
+</body>
+</html>

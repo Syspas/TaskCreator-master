@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <div class="header-right">
+        <div class="welcome-text">Добро пожаловать!</div>
+        <a class="logout-button" th:href="@{/logout}">Выйти</a>
+    </div>
+</header>
+<div class="wrapper">
+    <nav id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <li><a th:href="@{/static}">Главная</a></li>
+            <li><a th:href="@{/tasks}">Просмотр обращений</a></li>
+            <li><a th:href="@{/create-task}">Создать обращение</a></li>
+            <li><a th:href="@{/settings}" class="active">Настройки</a></li>
+            <li><a th:href="@{/logout}">Выйти</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Настройки</h1>
+        <div class="settings">
+            <h2>Основные настройки пользователя</h2>
+            <form action="/update-settings" method="post">
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" name="username" value="user123">
+
+                <label for="email">Электронная почта:</label>
+                <input type="email" id="email" name="email" value="user@example.com">
+
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" placeholder="Введите новый пароль">
+
+                <button type="submit">Сохранить изменения</button>
+            </form>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>

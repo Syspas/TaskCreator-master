@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <div class="header-right">
+        <a href="../../../main/resources/templates/logout-success.html" class="logout-button">Выйти</a>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <!-- Используем th:href для динамических маршрутов -->
+            <li><a href="/home">Главная</a></li>
+            <li><a href="/create_task" class="active">Создать обращение</a></li>
+            <li><a href="/view_task">Просмотр обращений</a></li>
+            <li><a href="/settings">Настройки</a></li>
+
+        </ul>
+    </div>
+
+    <main>
+        <!-- Блок приветствия -->
+        <h1>Добро пожаловать!</h1>
+        <p>Вы успешно вошли в систему.</p>
+
+        <!-- Блок новостей -->
+        <h3>Новости и обновления</h3>
+        <div class="info-box">
+            <p><strong>Обновление системы:</strong> Теперь вы можете прикреплять файлы к обращениям. Мы также улучшили интерфейс профиля для удобства работы.</p>
+        </div>
+
+        <!-- Блок обращений -->
+        <h3>Последние обращения</h3>
+        <div class="recent-tasks">
+            <!-- Используем th:each для отображения последних задач -->
+            <div th:each="task : ${recentTasks}">
+                <a th:href="@{/task/{id}(id=${task.id})}" class="task-item">
+                    <div class="task-title" th:text="${task.title}"></div>
+                    <div class="task-info" th:class="'status-' + ${task.status.toLowerCase()}">
+                    <span>
+                        <div class="status-icon"></div>
+                        Дата: [[${#temporals.format(task.createdAt, 'dd.MM.yyyy')}]]
+                    </span>
+                        <span>
+                        <div class="status-icon"></div>
+                        Статус: [[${task.status}]]
+                    </span>
+                        <span>
+                        Исполнитель: [[${task.assignee}]]
+                    </span>
+                    </div>
+                </a>
+            </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>

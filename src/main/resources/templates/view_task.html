@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр обращений</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<th:block th:replace="fragments/header.html"></th:block>
+
+<div class="wrapper">
+    <th:block th:replace="fragments/menu.html"></th:block>
+
+    <main>
+        <h1>Просмотр обращений</h1>
+        <div class="recent-tasks">
+            <div th:each="task : ${tasks}">
+                <a th:href="@{/task/{id}(id=${task.id})}" class="task-item">
+                    <div class="task-title" th:text="${task.title}"></div>
+                    <div class="task-info" th:class="'status-' + ${task.status.toLowerCase()}">
+                            <span>
+                                <div class="status-icon"></div>
+                                Дата: [[${#temporals.format(task.createdAt, 'dd.MM.yyyy')}]]
+                            </span>
+                        <span>
+                                <div class="status-icon"></div>
+                                Статус: [[${task.status}]]
+                            </span>
+                        <span>
+                                Исполнитель: [[${task.assignee}]]
+                            </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<th:block th:replace="fragments/footer.html"></th:block>
+</body>
+</html>

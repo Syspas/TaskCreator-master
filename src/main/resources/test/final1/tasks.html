@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Просмотр обращений</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="logo">Система регистрации обращений</div>
+  <div class="header-right">
+    <div class="welcome-text">Добро пожаловать!</div>
+    <a class="logout-button" th:href="@{/logout}">Выйти</a>
+  </div>
+</header>
+<div class="wrapper">
+  <nav id="sidebar">
+    <h3>Меню</h3>
+    <ul>
+      <li><a th:href="@{/static}">Главная</a></li>
+      <li><a th:href="@{/tasks}" class="active">Просмотр обращений</a></li>
+      <li><a th:href="@{/create-task}">Создать обращение</a></li>
+      <li><a th:href="@{/settings}">Настройки</a></li>
+      <li><a th:href="@{/logout}">Выйти</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>Просмотр обращений</h1>
+    <div class="content">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Заголовок</th>
+          <th>Дата создания</th>
+          <th>Статус</th>
+          <th>Исполнитель</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Примеры заявок -->
+        <tr>
+          <td>001</td>
+          <td>Ошибка в системе</td>
+          <td>15.10.2024</td>
+          <td style="color: green;">Выполнено</td>
+          <td>Иванов И.И.</td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>Проблема с доступом</td>
+          <td>17.10.2024</td>
+          <td style="color: orange;">В работе</td>
+          <td>Петров П.П.</td>
+        </tr>
+        <tr>
+          <td>003</td>
+          <td>Некорректное отображение данных</td>
+          <td>20.10.2024</td>
+          <td style="color: red;">Новая</td>
+          <td>Сидоров С.С.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<footer>
+  <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>

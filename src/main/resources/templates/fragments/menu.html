@@ -1,0 +1,10 @@
+<!-- src/main/resources/templates/fragments/menu.html -->
+<div id="sidebar">
+    <h3>Меню</h3>
+    <ul>
+        <li><a href="/home" th:classappend="${activePage == 'home'} ? 'active'">Главная</a></li>
+        <li><a href="/create_task" th:classappend="${activePage == 'create_task'} ? 'active'">Создать обращение</a></li>
+        <li><a href="/view_task" th:classappend="${activePage == 'view_task'} ? 'active'">Просмотр обращений</a></li>
+        <li><a href="/settings" th:classappend="${activePage == 'settings'} ? 'active'">Настройки</a></li>
+    </ul>
+</div>

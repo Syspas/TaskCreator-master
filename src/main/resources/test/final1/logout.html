@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выйти</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <div class="header-right">
+        <div class="welcome-text">Добро пожаловать!</div>
+        <a class="logout-button" th:href="@{/logout}">Выйти</a>
+    </div>
+</header>
+<div class="wrapper">
+    <nav id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <li><a th:href="@{/static}">Главная</a></li>
+            <li><a th:href="@{/tasks}">Просмотр обращений</a></li>
+            <li><a th:href="@{/create-task}">Создать обращение</a></li>
+            <li><a th:href="@{/settings}">Настройки</a></li>
+            <li><a th:href="@{/logout}" class="active">Выйти</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Выход из системы</h1>
+        <div class="content">
+            <p>Вы уверены, что хотите выйти из системы?</p>
+            <a href="/logout-success" class="logout-button">Да, выйти</a>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>

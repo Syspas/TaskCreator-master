@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать обращение</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем общий файл стилей -->
+    <style>
+        /* Дополнительные стили для увеличения формы */
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 150px; /* Увеличенная высота для описания */
+            resize: vertical; /* Возможность растягивать поле описания */
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">Система регистрации обращений</div>
+    <div class="header-right">
+        <a href="logout.html" class="logout-button">Выйти</a>
+    </div>
+</header>
+
+<div class="wrapper">
+    <!-- Боковое меню -->
+    <div id="sidebar">
+        <h3>Меню</h3>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="create_task.html" class="active">Создать обращение</a></li> <!-- Активный пункт -->
+            <li><a href="tasks.html">Просмотр обращений</a></li>
+             <li><a href="settings.html">Настройки</a></li>
+        </ul>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <h1 class="create-task-title">Создать обращение</h1>
+        <div class="form-container">
+            <form action="/create-task" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="task-title">Название обращения:</label>
+                    <input type="text" id="task-title" name="task-title" placeholder="Введите заголовок проблемы" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Описание обращения:</label>
+                    <textarea id="task-description" name="task-description" placeholder="Опишите проблему" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-files">Прикрепленные файлы:</label>
+                    <input type="file" id="task-files" name="task-files" multiple>
+                </div>
+                <button type="submit">Создать обращение</button>
+            </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 ООО Имя компании. Все права защищены.</p>
+</footer>
+</body>
+</html>
