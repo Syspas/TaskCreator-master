@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<th:block th:replace="fragments/header.html"></th:block>
+
+<div class="wrapper">
+    <th:block th:replace="fragments/menu.html"></th:block>
+
+    <main>
+        <div class="task-created">
+            <h1 class="task-title">Ваша заявка создана</h1>
+            <p class="task-number">Номер вашей заявки: <span th:text="${taskId}" class="task-id"></span></p>
+            <a th:href="@{/}" class="back-link">Вернуться на главную страницу</a>
+        </div>
+    </main>
+</div>
+
+<th:block th:replace="fragments/footer.html"></th:block>
+</body>
+</html>

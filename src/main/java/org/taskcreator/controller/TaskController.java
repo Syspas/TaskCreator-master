@@ -46,29 +46,40 @@ public class TaskController {
     /**
      * Обрабатывает создание новой задачи.
      *
+     * Этот метод принимает заголовок, описание и файлы, связанные с задачей.
+     * Если заголовок или описание пустые, возвращает на форму создания задачи с сообщением об ошибке.
+     * Если задача успешно создана, редиректит на страницу с сообщением об успешном создании задачи.
+     *
      * @param title заголовок задачи
      * @param description описание задачи
      * @param files массив файлов, связанных с задачей
      * @param model модель для передачи данных в шаблон
-     * @return редирект на страницу задачи
+     * @return редирект на страницу с сообщением об успешном создании задачи
      * @throws IOException если произошла ошибка при загрузке файлов
      */
     @PostMapping("/create-task")
     public String createTask(@RequestParam("task-title") String title,
                              @RequestParam("task-description") String description,
                              @RequestParam("task-files") MultipartFile[] files,
-                             Model model) throws IOException {
+                             Model model) {
+
+        // Проверка на наличие заголовка и описания
+        if (title.isEmpty() || description.isEmpty()) {
+            model.addAttribute("error", "Заголовок и описание не могут быть пустыми.");
+            return "create-task"; // Возвращаем на форму с ошибкой
+        }
 
         // Получаем имена файлов и сохраняем их
         List<String> fileNames = Arrays.stream(files)
-                .filter(file -> !file.isEmpty())
+                .filter(file -> !file.isEmpty()) // Фильтруем пустые файлы
                 .map(MultipartFile::getOriginalFilename)
                 .toList();
 
         // Создаём задачу
         Task task = taskService.createTask(title, description, fileNames);
-        model.addAttribute("task", task);
-        return "redirect:/task/" + task.getId();
+
+        // Редирект на страницу с сообщением об успешном создании задачи
+        return "redirect:/task-created/" + task.getId(); // Перенаправление на страницу с номером задачи
     }
 
     /**
@@ -89,5 +100,18 @@ public class TaskController {
             System.err.println("Task not found for ID: " + taskId);
             return "redirect:/error"; // Добавьте страницу ошибки "error"
         }
+    }
+
+    /**
+     * Отображает страницу с сообщением о создании задачи.
+     *
+     * @param taskId идентификатор созданной задачи
+     * @param model  модель для передачи данных в шаблон
+     * @return имя шаблона для отображения сообщения о созданной задаче
+     */
+    @GetMapping("/task-created/{taskId}")
+    public String taskCreated(@PathVariable Long taskId, Model model) {
+        model.addAttribute("taskId", taskId); // Передаем номер задачи в модель
+        return "task-created"; // Возвращаем имя шаблона для отображения
     }
 }

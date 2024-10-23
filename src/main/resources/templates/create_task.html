@@ -13,26 +13,28 @@
     <th:block th:replace="fragments/menu.html"></th:block>
 
     <main>
-        <h1>Создать обращение</h1>
-        <div class="form-container">
-            <!-- Форма создания обращения -->
-            <form th:action="@{/create-task}" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="task-title">Название обращения:</label>
-                    <input type="text" id="task-title" name="taskTitle" placeholder="Введите заголовок проблемы" required>
-                </div>
-                <div class="form-group">
-                    <label for="task-description">Описание обращения:</label>
-                    <textarea id="task-description" name="taskDescription" placeholder="Опишите проблему" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="task-files">Прикрепленные файлы:</label>
-                    <input type="file" id="task-files" name="taskFiles" multiple>
-                </div>
-                <button type="submit">Создать обращение</button>
-            </form>
-        </div>
+    <h1>Создать обращение</h1>
+    <div class="form-container">
+        <!-- Форма создания обращения -->
+        <form th:action="@{/create-task}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="task-title">Название обращения:</label>
+                <input type="text" id="task-title" name="task-title" placeholder="Введите заголовок проблемы" required>
+            </div>
+            <div class="form-group">
+                <label for="task-description">Описание обращения:</label>
+                <textarea id="task-description" name="task-description" placeholder="Опишите проблему" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="task-files">Прикрепленные файлы:</label>
+                <input type="file" id="task-files" name="task-files" multiple>
+            </div>
+            <button type="submit">Создать обращение</button>
+        </form>
+    </div>
     </main>
+
+
 </div>
 
 <th:block th:replace="fragments/footer.html"></th:block>
