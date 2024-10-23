@@ -5,33 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создана новая заявка</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Глобальные стили */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Стили для header */
+        header {
+            background-color: #3a8d41;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для menu */
+        .menu {
             background-color: #f4f4f4;
-        }
-        .wrapper {
-            width: 80%;
-            margin: 0 auto;
-            background: #fff;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 150px; /* Ширина бокового меню */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
-        .task-created {
+
+        /* Обертка для контента */
+        .wrapper {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Стили для main */
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-left: 160px; /* Учитываем ширину бокового меню */
+        }
+
+        /* Стили для footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            margin-top: auto;
+        }
+
+        /* Стили только для элементов в блоке main */
+        .recent-tasks .task-created {
             text-align: center;
             margin-top: 50px;
         }
-        .task-title {
+        .recent-tasks .task-title {
             font-size: 24px;
             color: #333;
         }
-        .task-number {
+        .recent-tasks .task-number {
             font-size: 18px;
             color: #666;
         }
-        .back-link {
+        .recent-tasks .back-link {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
@@ -40,7 +88,7 @@
             text-decoration: none;
             border-radius: 5px;
         }
-        .back-link:hover {
+        .recent-tasks .back-link:hover {
             background-color: #0056b3;
         }
     </style>
@@ -49,15 +97,18 @@
 <th:block th:replace="fragments/header.html"></th:block>
 
 <div class="wrapper">
-    <th:block th:replace="fragments/menu.html"></th:block>
+    <div class="menu">
+        <th:block th:replace="fragments/menu.html"></th:block>
+    </div>
 
     <main>
         <div class="recent-tasks">
-        <div class="task-created">
-            <h1 class="task-title">Ваша заявка создана</h1>
-            <p class="task-number">Номер вашей заявки: <span th:text="${taskId}" class="task-id"></span></p>
-            <a th:href="@{/}" class="back-link">Вернуться на главную страницу</a>
-        </div>
+            <!-- Блок с информацией о созданной задаче -->
+            <div class="task-created">
+                <h1 class="task-title">Ваша заявка создана</h1>
+                <p class="task-number">Номер вашей заявки: <span th:text="${taskId}" class="task-id"></span></p>
+                <a th:href="@{/}" class="back-link">Вернуться на главную страницу</a>
+            </div>
         </div>
     </main>
 </div>
