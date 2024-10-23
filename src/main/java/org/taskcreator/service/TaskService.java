@@ -32,15 +32,19 @@ public class TaskService {
         return optionalTask.orElse(null); // Возврат null, если задача не найдена
     }
 
-    // Метод для добавления тестовых данных (необязателен в реальном проекте)
     public void loadTestData() {
-        Task task1 = new Task(1L, "Создать отчет", "Подготовить отчет о продажах за последний квартал",
-                List.of("report.pdf", "data.xlsx"));
-        Task task2 = new Task(2L, "Исправить ошибку", "Исправить ошибку в коде на странице входа",
-                List.of("error.log"));
+        List<RecentTask> allTasks = TaskDataProvider.getAllTasks(); // Получение задач из TaskDataProvider
 
-        tasks.add(task1);
-        tasks.add(task2);
+        // Перебираем все задачи и добавляем их в tasks
+        for (RecentTask recentTask : allTasks) {
+            Task task = new Task(
+                    recentTask.getId(), // Используем идентификатор RecentTask
+                    recentTask.getTitle(), // Заголовок задачи
+                    recentTask.getDescription(), // Описание задачи, если оно есть, либо можно оставить пустым
+                    List.of() // Добавляем пустой список файлов, если это не предусмотрено
+            );
+            tasks.add(task);
+        }
     }
 
     // Метод для получения всех задач
