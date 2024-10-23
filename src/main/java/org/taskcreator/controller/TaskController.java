@@ -76,8 +76,8 @@ public class TaskController {
         }
     }
 
-    // Пагинация для страницы tasks_page
-    @GetMapping("/tasks_page")
+    // Пагинация для страницы view_task
+    @GetMapping("/view_task")
     public String showTasks(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {
         List<RecentTask> allTasks = TaskDataProvider.getAllTasks(); // Получение задач из TaskDataProvider
 
@@ -96,6 +96,6 @@ public class TaskController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
 
-        return "tasks_page"; // Имя Thymeleaf-шаблона
+        return "view_task"; // Имя Thymeleaf-шаблона
     }
 }
