@@ -3,8 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Создана новая заявка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .wrapper {
+            width: 80%;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .task-created {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .task-title {
+            font-size: 24px;
+            color: #333;
+        }
+        .task-number {
+            font-size: 18px;
+            color: #666;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="fragments/header.html"></th:block>
@@ -13,10 +52,12 @@
     <th:block th:replace="fragments/menu.html"></th:block>
 
     <main>
+        <div class="recent-tasks">
         <div class="task-created">
             <h1 class="task-title">Ваша заявка создана</h1>
             <p class="task-number">Номер вашей заявки: <span th:text="${taskId}" class="task-id"></span></p>
             <a th:href="@{/}" class="back-link">Вернуться на главную страницу</a>
+        </div>
         </div>
     </main>
 </div>
