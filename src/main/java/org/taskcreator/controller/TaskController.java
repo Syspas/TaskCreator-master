@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.taskcreator.data.TaskDataProvider; // Импортируйте ваш новый класс
+import org.taskcreator.model.RecentTask;
 import org.taskcreator.model.Task;
 import org.taskcreator.service.TaskService;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,7 +48,6 @@ public class TaskController {
         }
 
         Task task = taskService.createTask(title, description, fileNames);
-
         model.addAttribute("task", task);
         return "redirect:/task/" + task.getId();
     }
@@ -56,14 +57,13 @@ public class TaskController {
         Task task = taskService.getTaskById(taskId);
         if (task != null) {
             model.addAttribute("task", task);
-            return "task";
+            return "task"; // Отображение общего представления задачи
         } else {
             return "redirect:/error"; // Добавьте страницу ошибки "error"
         }
     }
 
-    // ... методы для редактирования и удаления (не показаны)
-
+    // Метод для сохранения файлов
     private void saveFiles(MultipartFile[] files) throws IOException {
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
@@ -76,13 +76,26 @@ public class TaskController {
         }
     }
 
+    // Пагинация для страницы tasks_page
+    @GetMapping("/tasks_page")
+    public String showTasks(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {
+        List<RecentTask> allTasks = TaskDataProvider.getAllTasks(); // Получение задач из TaskDataProvider
 
-    @GetMapping("/getAllTasks")
-    public String showTasks(Model model) {
-        List<Task> tasks = taskService.getAllTasks();
-        model.addAttribute("tasks", tasks);
-        return "tasks";
+        int pageSize = 5;
+        int totalTasks = allTasks.size();
+        int totalPages = (int) Math.ceil((double) totalTasks / pageSize);
+
+        // Определяем начало и конец списка задач для текущей страницы
+        int startIndex = (page - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, totalTasks);
+
+        // Получаем задачи для текущей страницы
+        List<RecentTask> recentTasks = allTasks.subList(startIndex, endIndex);
+
+        model.addAttribute("recentTasks", recentTasks);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+
+        return "tasks_page"; // Имя Thymeleaf-шаблона
     }
-
-
 }

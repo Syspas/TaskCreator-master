@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описанание задачи</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<th:block th:replace="fragments/header.html"></th:block>
+
+<div class="wrapper">
+    <th:block th:replace="fragments/menu.html"></th:block>
+
+    <main>
+        <h1 th:if="${task}" th:text="'Детали обращения: ' + ${task.title}"></h1>
+
+        <div th:if="${task}">
+            <p><strong>ID задачи:</strong> <span th:text="${task.id}"></span></p>
+            <p><strong>Описание:</strong> <span th:text="${task.title}"></span></p>
+            <p><strong>Исполнитель:</strong> <span th:text="${task.assignee}"></span></p>
+            <p><strong>Статус:</strong> <span th:text="${task.status}"></span></p>
+            <p><strong>Дата создания:</strong> <span th:text="${#temporals.format(task.createdAt, 'dd.MM.yyyy')}"></span></p>
+        </div>
+
+        <p th:if="${error}" th:text="${error}"></p>
+
+        <a th:href="@{/tasks_page}">Назад к списку</a>
+
+    </main>
+</div>
+
+<th:block th:replace="fragments/footer.html"></th:block>
+</body>
+</html>

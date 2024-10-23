@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали задачи</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Детали задачи</h1>
+
+    <!-- Проверка на наличие ошибки (например, если задача не найдена) -->
+    <div th:if="${error}">
+        <p class="error" th:text="${error}"></p>
+    </div>
+
+    <!-- Отображение деталей задачи, если она найдена -->
+    <div th:if="${task != null}">
+        <h2 th:text="${task.title}">Название задачи</h2>
+
+        <div class="task-detail">
+            <p><strong>Описание:</strong> <span th:text="${task.description}"></span></p>
+            <p><strong>Статус:</strong> <span th:text="${task.status}"></span></p>
+            <p><strong>Исполнитель:</strong> <span th:text="${task.assignee}"></span></p>
+            <p><strong>Дата создания:</strong> <span th:text="${#temporals.format(task.createdAt, 'dd.MM.yyyy HH:mm')}"></span></p>
+
+            <!-- Если есть прикрепленные файлы, они будут отображены -->
+            <div th:if="${task.files != null}">
+                <p><strong>Файлы:</strong></p>
+                <ul>
+                    <li th:each="file : ${task.files}">
+                        <a th:href="@{/uploads/{file}(file=${file})}" th:text="${file}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Кнопки для редактирования или удаления задачи -->
+        <div class="task-actions">
+            <a th:href="@{/task/edit/{id}(id=${task.id})}" class="button">Редактировать</a>
+            <a th:href="@{/task/delete/{id}(id=${task.id})}" class="button" onclick="return confirm('Вы уверены, что хотите удалить задачу?');">Удалить</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
