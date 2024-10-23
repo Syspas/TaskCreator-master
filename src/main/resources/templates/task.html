@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" th:href="@{/styles.css}"> <!-- Убедитесь, что путь корректен -->
 </head>
 <body>
-<!-- Включение заголовка -->
 <th:block th:replace="fragments/header.html"></th:block>
-
 <div class="wrapper">
-    <!-- Включение меню -->
     <th:block th:replace="fragments/menu.html"></th:block>
 
-    <main>
-        <header>
-            <h1>Задача: [[${task.title}]]</h1>
-        </header>
 
+
+
+
+
+
+    <main>
+        <h1>Задача: [[${task.title}]]</h1>
         <div class="task-details">
             <h2>Описание</h2>
             <p th:text="${task.description}">Описание задачи</p>
-
             <h3>Прикрепленные файлы</h3>
             <ul>
                 <th:block th:each="file : ${task.fileNames}">
@@ -30,15 +29,20 @@
                         <a th:href="@{/uploads/{file}(file=${file})}" th:text="${file}">Имя файла</a>
                     </li>
                 </th:block>
-                <li th:if="${#lists.isEmpty(task.fileNames)}">Нет прикрепленных файлов.</li> <!-- Сообщение при отсутствии файлов -->
+                <li th:if="${#lists.isEmpty(task.fileNames)}">Нет прикрепленных файлов.</li>
             </ul>
         </div>
-
         <a href="/view_task">Вернуться к списку задач</a>
     </main>
-</div>
 
-<!-- Включение подвала -->
+
+
+
+
+
+
+
+</div>
 <th:block th:replace="fragments/footer.html"></th:block>
 </body>
 </html>
