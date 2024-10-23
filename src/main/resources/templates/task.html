@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Задача - [[${task.title}]]</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Подключите ваш CSS файл -->
+</head>
+<body>
+
+<header>
+    <h1>Задача: [[${task.title}]]</h1>
+</header>
+
+<div class="task-details">
+    <h2>Описание</h2>
+    <p th:text="${task.description}">Описание задачи</p>
+
+    <h3>Прикрепленные файлы</h3>
+    <ul>
+        <li th:each="file : ${task.files}">
+            <a th:href="@{/uploads/{file}(file=${file})}" th:text="${file}">Имя файла</a>
+        </li>
+    </ul>
+</div>
+
+<footer>
+    <a href="/view_task">Вернуться к списку задач</a>
+</footer>
+
+</body>
+</html>
