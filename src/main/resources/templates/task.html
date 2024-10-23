@@ -1,30 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
-    <title>Задача - [[${task.title}]]</title>
-    <link rel="stylesheet" href="/css/style.css"> <!-- Подключите ваш CSS файл -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!-- Включение заголовка -->
+<th:block th:replace="fragments/header.html"></th:block>
 
-<header>
-    <h1>Задача: [[${task.title}]]</h1>
-</header>
+<div class="wrapper">
+    <!-- Включение меню -->
+    <th:block th:replace="fragments/menu.html"></th:block>
 
-<div class="task-details">
-    <h2>Описание</h2>
-    <p th:text="${task.description}">Описание задачи</p>
+    <main>
+        <header>
+            <h1>Задача: [[${task.title}]]</h1>
+        </header>
 
-    <h3>Прикрепленные файлы</h3>
-    <ul>
-        <li th:each="file : ${task.files}">
-            <a th:href="@{/uploads/{file}(file=${file})}" th:text="${file}">Имя файла</a>
-        </li>
-    </ul>
+        <div class="task-details">
+            <h2>Описание</h2>
+            <p th:text="${task.description}">Описание задачи</p>
+
+            <h3>Прикрепленные файлы</h3>
+            <ul>
+                <th:block th:each="file : ${task.fileNames}">
+                    <li>
+                        <a th:href="@{/uploads/{file}(file=${file})}" th:text="${file}">Имя файла</a>
+                    </li>
+                </th:block>
+                <li th:if="${#lists.isEmpty(task.fileNames)}">Нет прикрепленных файлов.</li> <!-- Сообщение при отсутствии файлов -->
+            </ul>
+        </div>
+
+        <a href="/view_task">Вернуться к списку задач</a>
+    </main>
 </div>
 
-<footer>
-    <a href="/view_task">Вернуться к списку задач</a>
-</footer>
-
+<!-- Включение подвала -->
+<th:block th:replace="fragments/footer.html"></th:block>
 </body>
 </html>

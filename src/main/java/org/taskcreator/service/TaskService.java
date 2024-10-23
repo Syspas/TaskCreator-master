@@ -1,6 +1,8 @@
 package org.taskcreator.service;
 
 import org.springframework.stereotype.Service;
+import org.taskcreator.data.TaskDataProvider;
+import org.taskcreator.model.RecentTask;
 import org.taskcreator.model.Task;
 
 import java.util.ArrayList;
@@ -41,11 +43,13 @@ public class TaskService {
         tasks.add(task2);
     }
 
-
-
     // Метод для получения всех задач
     public List<Task> getAllTasks() {
-        //return new ArrayList<>(tasks);
-        return tasks;
+        return new ArrayList<>(tasks); // Возвращает копию списка задач
+    }
+
+    // Метод для получения недавних задач
+    public List<RecentTask> getRecentTasks() {
+        return TaskDataProvider.getAllTasks(); // Получение недавних задач из TaskDataProvider
     }
 }

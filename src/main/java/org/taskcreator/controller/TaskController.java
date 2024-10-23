@@ -25,6 +25,14 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    // Конструктор контроллера
+    @Autowired
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+        // Загружаем тестовые данные при инициализации контроллера
+        taskService.loadTestData();
+    }
+
     /**
      * Отображает форму для создания новой задачи.
      *
