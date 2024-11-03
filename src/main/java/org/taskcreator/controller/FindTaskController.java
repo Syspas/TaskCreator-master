@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.taskcreator.model.RecentTask;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +23,43 @@ public class FindTaskController {
      * Эти задачи служат для демонстрации функционала, как если бы они были
      * извлечены из базы данных.
      */
+    /**
+     * Начальные данные: список задач.
+     * Эти задачи служат для демонстрации функционала, как если бы они были
+     * извлечены из базы данных.
+     */
     private static final List<RecentTask> initialTasks = new ArrayList<>();
+
     static {
-        initialTasks.add(new RecentTask(1L, "Обращение 1: Проблема с доступом к учетной записи", "Выполняется", "Иванов Иван", LocalDateTime.now().minusDays(1)));
-        initialTasks.add(new RecentTask(2L, "Обращение 2: Ошибка при загрузке файла", "Завершена", "Петров Петр", LocalDateTime.now().minusDays(2)));
-        initialTasks.add(new RecentTask(3L, "Обращение 3: Пожелание по улучшению интерфейса", "В ожидании", "Сидоров Сидор", LocalDateTime.now().minusDays(3)));
+        initialTasks.add(new RecentTask(
+                1L,
+                "Обращение 1: Проблема с доступом к учетной записи",
+                "Проблема с авторизацией: пользователь не может войти в систему, ошибка аутентификации.",
+                "Выполняется",
+                "Иванов Константин",
+                "Алексей Смирнов",
+                LocalDateTime.now().minusDays(1)
+        ));
+
+        initialTasks.add(new RecentTask(
+                2L,
+                "Обращение 2: Ошибка при загрузке файла",
+                "При загрузке файла формата .docx возникает ошибка формата. Не удается открыть файл.",
+                "Завершена",
+                "Петров Петр",
+                "Мария Козлова",
+                LocalDateTime.now().minusDays(2)
+        ));
+
+        initialTasks.add(new RecentTask(
+                3L,
+                "Обращение 3: Пожелание по улучшению интерфейса",
+                "Пожелание улучшить интерфейс, добавить темную тему и изменить расположение меню.",
+                "В ожидании",
+                "Сидоров Сидор",
+                "Николай Волков",
+                LocalDateTime.now().minusDays(3)
+        ));
     }
 
     /**

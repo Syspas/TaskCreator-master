@@ -16,12 +16,20 @@
         <span th:text="${task.title}">Не указано</span>
     </p>
 
+    <p><strong>Описание:</strong>
+        <span th:text="${task.description}">Не указано</span>
+    </p>
+
     <p><strong>Статус:</strong>
         <span th:text="${task.status}">Не указано</span>
     </p>
 
-    <p><strong>Ответственный:</strong>
+    <p><strong>Исполнитель:</strong>
         <span th:text="${task.assignee}">Не указано</span>
+    </p>
+
+    <p><strong>Создатель задачи:</strong>
+        <span th:text="${task.creator}">Не указано</span>
     </p>
 
     <p><strong>Дата создания:</strong>
