@@ -5,9 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.taskcreator.model.FindTask;
-import org.taskcreator.model.RecentTask;
+import  org.taskcreator.service.jira.api.client.get.JsonDownloader; // Предполагается, что у вас есть сервис JsonDownloader
+import org.taskcreator.service.jira.api.client.get.date.Task;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,53 +19,13 @@ import java.util.List;
 @Controller
 public class NewFindTaskController {
 
-    /**
-     * Начальные данные: список задач.
-     * Эти задачи служат для демонстрации функционала, как если бы они были
-     * извлечены из базы данных.
-     */
-    /**
-     * Начальные данные: список задач.
-     * Эти задачи служат для демонстрации функционала, как если бы они были
-     * извлечены из базы данных.
-     */
-    private static final List<FindTask> initialTasks = new ArrayList<>();
+    private final JsonDownloader jsonDownloader; // Сервис для загрузки задач
 
-    static {
-        initialTasks.add(new FindTask (
-                1L,
-                "Обращение 1: Проблема с доступом к учетной записи",
-                "Проблема с авторизацией: пользователь не может войти в систему, ошибка аутентификации.",
-                "Выполняется",
-                "Иванов Константин",
-                "Алексей Смирнов",
-                "2024-11-01T12:54:08.073+0300", // Дата создания
-                "2024-11-01T14:56:05.063+0300"  // Дата обновления
-        ));
-
-        initialTasks.add(new FindTask (
-                2L,
-                "Обращение 2: Ошибка при загрузке файла",
-                "При загрузке файла формата .docx возникает ошибка формата. Не удается открыть файл.",
-                "Завершена",
-                "Петров Петр",
-                "Мария Козлова",
-                "2024-11-01T11:15:08.000+0300", // Дата создания
-                "2024-11-01T16:30:10.123+0300"  // Дата обновления
-        ));
-
-        initialTasks.add(new FindTask (
-                3L,
-                "Обращение 3: Пожелание по улучшению интерфейса",
-                "Пожелание улучшить интерфейс, добавить темную тему и изменить расположение меню.",
-                "В ожидании",
-                "Сидоров Сидор",
-                "Николай Волков",
-                "2024-10-31T09:45:12.345+0300", // Дата создания
-                "2024-10-31T17:20:45.678+0300"  // Дата обновления
-        ));
+    public NewFindTaskController(JsonDownloader jsonDownloader) {
+        this.jsonDownloader = jsonDownloader;
     }
 
+    private List<FindTask> initialTasks = new ArrayList<>(); // Начальные задачи (пустой список для примера)
 
     /**
      * Обрабатывает GET-запрос для отображения информации о задаче с указанным идентификатором.
@@ -73,7 +33,7 @@ public class NewFindTaskController {
      *
      * @param id Идентификатор задачи, передаваемый в URL
      * @param model Модель для передачи данных в представление
-     * @return Название шаблона "find-task" для отображения данных о задаче
+     * @return Название шаблона "new-find-task" для отображения данных о задаче
      */
     @GetMapping("/new-find-task/{id}")
     public String findTask(@PathVariable("id") Long id, Model model) {
@@ -81,9 +41,34 @@ public class NewFindTaskController {
         FindTask task = initialTasks.stream()
                 .filter(t -> t.getId().equals(id))
                 .findFirst()
-                .orElse(null); // Если задача не найдена, возвращаем null
+                .orElseGet(() -> fetchTaskById(id)); // Если задача не найдена, пытаемся получить ее по ID
 
         model.addAttribute("task", task); // Добавляем задачу в модель (может быть null)
         return "new-find-task"; // Отображаем шаблон "find-task.html"
+    }
+
+    /**
+     * Метод для получения задачи по ее идентификатору из Jira.
+     *
+     * @param id Идентификатор задачи
+     * @return Объект FindTask или null, если задача не найдена
+     */
+    private FindTask fetchTaskById(Long id) {
+        String issueKey = "KAN-" + id; // Формируем ключ задачи, например, "KAN-3"
+        Task task = jsonDownloader.fetchIssueJson(issueKey); // Получаем объект Task из сервиса
+
+        if (task != null) {
+            return new FindTask(
+                    id,
+                    task.getFields().getSummary(),
+                    task.getFields().getDescription(),
+                    task.getFields().getStatus().getName(),
+                    task.getFields().getAssignee() != null ? task.getFields().getAssignee().getDisplayName() : "Не назначен",
+                    task.getFields().getCreator() != null ? task.getFields().getCreator().getDisplayName() : "Не указан",
+                    task.getFields().getCreated(), // Используйте метод для форматирования даты при необходимости
+                    task.getFields().getUpdated()  // Используйте метод для форматирования даты при необходимости
+            );
+        }
+        return null; // Если задача не найдена, возвращаем null
     }
 }

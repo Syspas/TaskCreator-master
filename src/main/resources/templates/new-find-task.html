@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
-    <title>Детали задачи</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Детали задачи</h1>
+<th:block th:replace="fragments/header.html"></th:block>
+
+<div class="wrapper">
+    <th:block th:replace="fragments/menu.html"></th:block>
+
+
+
+
+
+    <h1>Детали задачи</h1>
 
 <!-- Проверка наличия объекта task -->
 <div th:if="${task != null}">
