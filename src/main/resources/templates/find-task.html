@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Найти задачу</title>
+</head>
+<body>
+<h1>Детали задачи</h1>
+
+<!-- Проверка наличия объекта task -->
+<div th:if="${task != null}">
+    <p><strong>ID задачи:</strong>
+        <span th:text="${task.id}">Не указано</span>
+    </p>
+
+    <p><strong>Название:</strong>
+        <span th:text="${task.title}">Не указано</span>
+    </p>
+
+    <p><strong>Статус:</strong>
+        <span th:text="${task.status}">Не указано</span>
+    </p>
+
+    <p><strong>Ответственный:</strong>
+        <span th:text="${task.assignee}">Не указано</span>
+    </p>
+
+    <p><strong>Дата создания:</strong>
+        <span th:text="${#temporals.format(task.createdAt, 'yyyy-MM-dd')}">Не указано</span>
+    </p>
+</div>
+
+<!-- Сообщение, если объект task равен null -->
+<div th:unless="${task != null}">
+    <p>Задача не найдена.</p>
+</div>
+
+<a href="/" th:href="@{/home}">Вернуться на домашнюю страницу</a>
+</body>
+</html>
