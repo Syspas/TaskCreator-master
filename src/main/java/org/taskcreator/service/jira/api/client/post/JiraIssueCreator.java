@@ -1,15 +1,11 @@
-package org.JiraApiClient.post.step6;
+package org.taskcreator.service.jira.api.client.post;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Properties;
 import java.util.Base64;
+import java.util.Properties;
 
 /**
  * Класс для создания задач в Jira.

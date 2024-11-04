@@ -1,4 +1,4 @@
-package org.JiraApiClient.post.step6;
+package org.taskcreator.service.jira.api.client.post;
 
 
 public class Main {

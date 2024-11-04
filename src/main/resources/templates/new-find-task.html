@@ -4,60 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .task-card {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .task-card p {
+            margin: 10px 0;
+        }
+
+        .task-card strong {
+            display: inline-block;
+            width: 200px; /* Фиксированная ширина для выравнивания */
+        }
+
+        .alert {
+            background-color: #ffeeba;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .return-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .return-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+
+<!-- Верхний блок (header) -->
 <th:block th:replace="fragments/header.html"></th:block>
 
-<div class="wrapper">
+<div class="container">
+    <!-- Боковое меню -->
     <th:block th:replace="fragments/menu.html"></th:block>
 
-
-
-
-
+    <!-- Заголовок страницы -->
     <h1>Детали задачи</h1>
 
-<!-- Проверка наличия объекта task -->
-<div th:if="${task != null}">
-    <p><strong>ID задачи:</strong>
-        <span th:text="${task.id}">Не указано</span>
-    </p>
+    <!-- Проверка наличия объекта task -->
+    <div th:if="${task != null}" class="task-card">
+        <p><strong>ID задачи:</strong>
+            <span th:text="${task.id}">Не указано</span>
+        </p>
 
-    <p><strong>Название:</strong>
-        <span th:text="${task.title}">Не указано</span>
-    </p>
+        <p><strong>Название:</strong>
+            <span th:text="${task.title}">Не указано</span>
+        </p>
 
-    <p><strong>Описание:</strong>
-        <span th:text="${task.description}">Не указано</span>
-    </p>
+        <p><strong>Описание:</strong>
+            <span th:text="${task.description}">Не указано</span>
+        </p>
 
-    <p><strong>Статус:</strong>
-        <span th:text="${task.status}">Не указано</span>
-    </p>
+        <p><strong>Статус:</strong>
+            <span th:text="${task.status}">Не указано</span>
+        </p>
 
-    <p><strong>Исполнитель:</strong>
-        <span th:text="${task.assignee != null ? task.assignee : 'Не назначен'}">Не назначен</span>
-    </p>
+        <p><strong>Исполнитель:</strong>
+            <span th:text="${task.assignee != null ? task.assignee : 'Не назначен'}">Не назначен</span>
+        </p>
 
-    <p><strong>Создатель задачи:</strong>
-        <span th:text="${task.creator != null ? task.creator : 'Не указан'}">Не указан</span>
-    </p>
+        <p><strong>Создатель задачи:</strong>
+            <span th:text="${task.creator != null ? task.creator : 'Не указан'}">Не указан</span>
+        </p>
 
-    <p><strong>Дата создания:</strong>
-        <span th:text="${task.createdAt}">Не указано</span>
-    </p>
+        <p><strong>Дата создания:</strong>
+            <span th:text="${task.createdAt}">Не указано</span>
+        </p>
 
-    <p><strong>Дата обновления:</strong>
-        <span th:text="${task.updatedAt}">Не указано</span>
-    </p>
+        <p><strong>Дата обновления:</strong>
+            <span th:text="${task.updatedAt}">Не указано</span>
+        </p>
+    </div>
+
+    <!-- Сообщение, если объект task равен null -->
+    <div th:unless="${task != null}" class="alert">
+        Задача не найдена.
+    </div>
+
+    <!-- Кнопка возврата на домашнюю страницу -->
+    <div class="text-center mt-4">
+        <a href="/" th:href="@{/home}" class="return-button">Вернуться на домашнюю страницу</a>
+    </div>
 </div>
 
-<!-- Сообщение, если объект task равен null -->
-<div th:unless="${task != null}">
-    <p>Задача не найдена.</p>
-</div>
-
-<a href="/" th:href="@{/home}">Вернуться на домашнюю страницу</a>
 </body>
 </html>

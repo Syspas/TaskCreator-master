@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.taskcreator.model.Task;
 import org.taskcreator.service.TaskService;
+import org.taskcreator.service.jira.api.client.post.JiraIssueCreator;
 
-import java.io.IOException;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,7 +26,11 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    // Конструктор контроллера
+    /**
+     * Конструктор контроллера.
+     *
+     * @param taskService служба для управления задачами
+     */
     @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -50,19 +55,17 @@ public class TaskController {
      * Если заголовок или описание пустые, возвращает на форму создания задачи с сообщением об ошибке.
      * Если задача успешно создана, редиректит на страницу с сообщением об успешном создании задачи.
      *
-     * @param title заголовок задачи
+     * @param title       заголовок задачи
      * @param description описание задачи
-     * @param files массив файлов, связанных с задачей
-     * @param model модель для передачи данных в шаблон
-     * @return редирект на страницу с сообщением об успешном создании задачи
-     * @throws IOException если произошла ошибка при загрузке файлов
+     * @param files       массив файлов, связанных с задачей
+     * @param model       модель для передачи данных в шаблон
+     * @return редирект на страницу с сообщением об успешном создании задачи или возвращение на форму с ошибкой
      */
     @PostMapping("/create-task")
     public String createTask(@RequestParam("task-title") String title,
                              @RequestParam("task-description") String description,
                              @RequestParam("task-files") MultipartFile[] files,
                              Model model) {
-
         // Проверка на наличие заголовка и описания
         if (title.isEmpty() || description.isEmpty()) {
             model.addAttribute("error", "Заголовок и описание не могут быть пустыми.");
@@ -75,8 +78,26 @@ public class TaskController {
                 .map(MultipartFile::getOriginalFilename)
                 .toList();
 
-        // Создаём задачу
+        // Создаем задачу локально
         Task task = taskService.createTask(title, description, fileNames);
+
+        // Создание экземпляра JiraIssueCreator
+        JiraIssueCreator jiraIssueCreator;
+        try {
+            jiraIssueCreator = new JiraIssueCreator(); // Загружаем конфигурацию из файла
+            String projectKey = "KAN"; // Замените на ваш ключ проекта
+            String issueTypeId = "10001"; // ID типа задачи
+
+            // Вызов метода для создания задачи в Jira с переданным issueTypeId
+            jiraIssueCreator.createIssue(projectKey, title, description, issueTypeId);
+            // Закрываем соединение с Jira
+            //jiraIssueCreator.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Ошибка при создании задачи в Jira.");
+            return "create-task"; // Возвращаем на форму с ошибкой
+        }
 
         // Редирект на страницу с сообщением об успешном создании задачи
         return "redirect:/task-created/" + task.getId(); // Перенаправление на страницу с номером задачи
@@ -86,7 +107,7 @@ public class TaskController {
      * Отображает задачу по указанному идентификатору.
      *
      * @param taskId идентификатор задачи
-     * @param model модель для передачи данных в шаблон
+     * @param model  модель для передачи данных в шаблон
      * @return имя шаблона для отображения задачи или редирект на страницу ошибки
      */
     @GetMapping("/task/{taskId}")
@@ -96,7 +117,6 @@ public class TaskController {
             model.addAttribute("task", task);
             return "task"; // Отображение общего представления задачи
         } else {
-            // Логируем и перенаправляем на страницу ошибки
             System.err.println("Task not found for ID: " + taskId);
             return "redirect:/error"; // Добавьте страницу ошибки "error"
         }
